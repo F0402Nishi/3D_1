@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] GameObject obstaclePrefab;//障害物プレハブ
+    [SerializeField] GameObject[] staclePrefab;//障害物プレハブ
     Vector3 spawnPos = new Vector3(25,0,0);//スポーンする場所
     float elapsedTime;
+    [SerializeField] float spawnInterval;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +19,16 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         elapsedTime += Time.deltaTime;
+
         if(elapsedTime > 2.0f) 
         {
-            Instantiate(obstaclePrefab, spawnPos, obstaclePrefab.transform.rotation);
+            SpawnRandomObject();
             elapsedTime = 0.0f;
         }
+    }
+    void SpawnRandomObject()
+    {
+        int ObjectIndex = Random.Range(0, staclePrefab.Length);
+        Instantiate(staclePrefab[ObjectIndex], new Vector3(25, 0, 0), staclePrefab[ObjectIndex].transform.rotation);
     }
 }
