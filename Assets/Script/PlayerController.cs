@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpForce; //privateは省略可能 //ジャンプ力
     [SerializeField] float gravityModifier;//重力値微調整
     [SerializeField] bool isOnGround = true;//地面についているか
-    bool gameOver;
+    public bool gameOver;
+
     // Start is called before the first frame update
     void Start()
     {
